@@ -28,7 +28,7 @@ class CommentsList(APIView):
         return Response(serializers.data, status=status.HTTP_201_CREATED)
 
 
-class CommentDetail(APIView):
+class CommentDetails(APIView):
     # A class-based view that retrieves (by id), updates, or deletes a song
 
     @permission_classes([IsAuthenticated])
@@ -46,19 +46,12 @@ class CommentDetail(APIView):
         serializer.save(user=request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    @permission_classes([IsAuthenticated])
-    def post(self, request, format=None):
-        serializers = CommentSerializer(data=request.data)
-        # the following validates that API user input is true or accurate to the database
-        serializers.is_valid(raise_exception=True)
-        serializers.save(user=request.user)
-        return Response(serializers.data, status=status.HTTP_201_CREATED)
 
-class ReplyList(APIView):
+class ReplyComment(APIView):
     # A class-based view that lists all songs or creates a new song
 
     @permission_classes([IsAuthenticated])
-    def post(self, request, pk, format=None):
+    def post(self, request, pk):
         reply = get_object_or_404(Reply, pk=pk)
         serializers = ReplySerializer(reply, data=request.data)
         # the following validates that API user input is true or accurate to the database
