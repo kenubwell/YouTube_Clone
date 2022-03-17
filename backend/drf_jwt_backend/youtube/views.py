@@ -51,21 +51,12 @@ class CommentDetails(APIView):
 class ReplyComment(APIView):
     @permission_classes([IsAuthenticated])
     def post(self, request, pk):
-        comment_id = Comment.objects.get(pk=pk) 
+        comment_id = pk
         temp_data = request.data
-        temp_data['id'] = comment_id
+        temp_data['comment_id'] = comment_id
         serializers = ReplySerializer(data=temp_data)
         serializers.is_valid(raise_exception=True)
         serializers.save(user=request.user)
         return Response(serializers.data, status=status.HTTP_201_CREATED)
-
-
-    # @permission_classes([IsAuthenticated])
-    # def post(self, request, pk):
-    #     commentPK = get_object_or_404(Comment, pk=pk)
-    #     serializers = ReplySerializer(commentPK, data=request.data)
-    #     serializers.is_valid(raise_exception=True)
-    #     serializers.save(user=request.user)
-    #     return Response(serializers.data, status=status.HTTP_201_CREATED)
 
 
