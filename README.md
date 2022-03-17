@@ -1,7 +1,3 @@
-# ReactDjango_JWT_StarterCode
+This was a collaborative full stack project for devCodeCamp's Full Stack Development bootcamp. This entailed cloning YouTube and coding the backend and frontend of the application. In addition, it incorporates protected and unprotected endpoints to support user authentication.
 
-Starter code for full stack React + Django applications using JWT for authentication/authorization and a fully working register/login system on the React side
-
-## NOTE
-
-"cars" app in Django backend for example purposes only. Study it closely and review provided resources to understand how to properly create protected endpoints that require a JWT token for authorization.
+Technologies: React, JavaScript, HTML/CSS, Django, Django REST Framework, MySQL, Axios, and Postman
