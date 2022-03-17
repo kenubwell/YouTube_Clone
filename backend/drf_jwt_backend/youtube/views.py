@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
@@ -10,7 +11,7 @@ from .serializers import CommentSerializer, ReplySerializer
 
 
 class CommentsList(APIView):
-    # A class-based view that lists all songs or creates a new song
+
     @permission_classes([AllowAny])
     def get(self, request):
         comments = Comment.objects.all()
@@ -28,8 +29,8 @@ class CommentsList(APIView):
         return Response(serializers.data, status=status.HTTP_201_CREATED)
 
 
+
 class CommentDetails(APIView):
-    # A class-based view that retrieves (by id), updates, or deletes a song
 
     @permission_classes([IsAuthenticated])
     def get(self, request, pk):
@@ -48,14 +49,23 @@ class CommentDetails(APIView):
 
 
 class ReplyComment(APIView):
-    # A class-based view that lists all songs or creates a new song
-
     @permission_classes([IsAuthenticated])
     def post(self, request, pk):
-        reply = get_object_or_404(Reply, pk=pk)
-        serializers = ReplySerializer(reply, data=request.data)
-        # the following validates that API user input is true or accurate to the database
+        comment_id = Comment.objects.get(pk=pk) 
+        temp_data = request.data
+        temp_data['id'] = comment_id
+        serializers = ReplySerializer(data=temp_data)
         serializers.is_valid(raise_exception=True)
         serializers.save(user=request.user)
         return Response(serializers.data, status=status.HTTP_201_CREATED)
+
+
+    # @permission_classes([IsAuthenticated])
+    # def post(self, request, pk):
+    #     commentPK = get_object_or_404(Comment, pk=pk)
+    #     serializers = ReplySerializer(commentPK, data=request.data)
+    #     serializers.is_valid(raise_exception=True)
+    #     serializers.save(user=request.user)
+    #     return Response(serializers.data, status=status.HTTP_201_CREATED)
+
 
