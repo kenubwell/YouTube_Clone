@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d4409d57-7119-4339-bfae-1f3a18bc6341",
+		"_postman_id": "028b4a21-7618-4ba0-92f2-f4b7c1e8a7f9",
 		"name": "DRF_JWT_Backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -216,6 +216,183 @@
 							"path": [
 								"api",
 								"cars",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments_&_Reply",
+			"item": [
+				{
+					"name": "GET all comments_videoID (unprotected)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/comment/VtWekeC_ktk/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"comment",
+								"VtWekeC_ktk",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Comment (protected)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ4MzIzNDAxLCJpYXQiOjE2NDc0NTk0MDEsImp0aSI6Ijg0MDJlYTY1ZDczNjQxM2NhNzZjMzUwNjQ3MDdjNmZjIiwidXNlcl9pZCI6MywidXNlcm5hbWUiOiJrZW5ibGFjIiwiZmlyc3RfbmFtZSI6IktlbiJ9.TNTyo661xrybA-wqk9FABGDk-_AuSHNQORez4N1ymYg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"video_id\": \"VtWekeC_ktk\",\r\n        \"text\": \"I think we're done\",\r\n        \"likes\": 0,\r\n        \"dislikes\": 0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/comment/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Comment (protected)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ4NDA4MTAwLCJpYXQiOjE2NDc1NDQxMDAsImp0aSI6ImQ5ZjkwMzdmNjdkMzRjYTlhNGMyZmVkNjFhZWQzMzc4IiwidXNlcl9pZCI6MywidXNlcm5hbWUiOiJrZW5ibGFjIiwiZmlyc3RfbmFtZSI6IktlbiJ9.PFX5KQqJn5wHNSc4Sg4CpZtnSaisSAlk_j1AZV2cCl8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"video_id\": \"eqrKxDbzhbg\",\r\n        \"text\": \"For sure, we made MVP\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/comment/6/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"comment",
+								"6",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Replies_Comment_ID (protected)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ4MzIzNDAxLCJpYXQiOjE2NDc0NTk0MDEsImp0aSI6Ijg0MDJlYTY1ZDczNjQxM2NhNzZjMzUwNjQ3MDdjNmZjIiwidXNlcl9pZCI6MywidXNlcm5hbWUiOiJrZW5ibGFjIiwiZmlyc3RfbmFtZSI6IktlbiJ9.TNTyo661xrybA-wqk9FABGDk-_AuSHNQORez4N1ymYg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/comment/reply/6/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"comment",
+								"reply",
+								"6",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reply_Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ4MzIzNDAxLCJpYXQiOjE2NDc0NTk0MDEsImp0aSI6Ijg0MDJlYTY1ZDczNjQxM2NhNzZjMzUwNjQ3MDdjNmZjIiwidXNlcl9pZCI6MywidXNlcm5hbWUiOiJrZW5ibGFjIiwiZmlyc3RfbmFtZSI6IktlbiJ9.TNTyo661xrybA-wqk9FABGDk-_AuSHNQORez4N1ymYg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"text\": \"We finally figured it out\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/comment/reply/5/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"comment",
+								"reply",
+								"5",
 								""
 							]
 						}
