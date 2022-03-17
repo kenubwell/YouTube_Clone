@@ -264,7 +264,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"video_id\": \"VtWekeC_ktk\",\r\n        \"text\": \"I think we're done\",\r\n        \"likes\": 0,\r\n        \"dislikes\": 0\r\n    }",
+							"raw": "    {\r\n        \"video_id\": \"VtWekeC_ktk\",\r\n        \"text\": \"We are definitely done\",\r\n        \"likes\": 0,\r\n        \"dislikes\": 0\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -302,7 +302,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"video_id\": \"eqrKxDbzhbg\",\r\n        \"text\": \"For sure, we made MVP\"\r\n    }",
+							"raw": "    {\r\n        \"video_id\": \"eqrKxDbzhbg\",\r\n        \"text\": \"For sure, we made MVP!\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -360,7 +360,7 @@
 					"response": []
 				},
 				{
-					"name": "Reply_Comment",
+					"name": "Reply_Comment (protected)",
 					"request": {
 						"method": "POST",
 						"header": [
