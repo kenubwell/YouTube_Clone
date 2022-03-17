@@ -9,16 +9,17 @@ from .models import Comment, Reply
 from .serializers import CommentSerializer, ReplySerializer 
 
 
-
-class CommentsList(APIView):
+class VideoComments(APIView):
 
     @permission_classes([AllowAny])
-    def get(self, request):
+    def get(self, video_id_val):
         comments = Comment.objects.all()
-        # the following serializer is going to take our songs table and convert to json
-        serializers = CommentSerializer(comments, many=True)
+        video_comments = comments.filter(video_id__video_id = video_id_val)
+        serializers = CommentSerializer(video_comments, many=True)
         return Response(serializers.data, status=status.HTTP_200_OK)
 
+
+class CommentPost(APIView):
 
     @permission_classes([IsAuthenticated])
     def post(self, request):
@@ -29,18 +30,10 @@ class CommentsList(APIView):
         return Response(serializers.data, status=status.HTTP_201_CREATED)
 
 
-
-class CommentDetails(APIView):
-
-    @permission_classes([IsAuthenticated])
-    def get(self, request, pk):
-        comment = get_object_or_404(Comment.objects.filter(user_id=request.user.id), pk=pk)
-        serializer = CommentSerializer(comment)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
+class CommentUpdate(APIView):
 
     @permission_classes([IsAuthenticated])
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         comment = get_object_or_404(Comment, pk=pk)
         serializer = CommentSerializer(comment, data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -48,7 +41,14 @@ class CommentDetails(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class ReplyComment(APIView):
+class ReplyDetails(APIView):
+
+    @permission_classes([IsAuthenticated])
+    def get(self, pk):
+        replies = Reply.objects.filter(comment_id = pk)
+        serializers = ReplySerializer(replies, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
     @permission_classes([IsAuthenticated])
     def post(self, request, pk):
         comment_id = pk
