@@ -30,7 +30,7 @@ class CommentPost(APIView):
 
 
 class CommentUpdate(APIView):
-
+    
     @permission_classes([IsAuthenticated])
     def put(self, request, pk):
         comment = get_object_or_404(Comment, pk=pk)
@@ -47,7 +47,7 @@ class ReplyDetails(APIView):
         replies = Reply.objects.filter(comment_id = pk)
         serializers = ReplySerializer(replies, many=True)
         return Response(serializers.data, status=status.HTTP_200_OK)
-        
+
 
     @permission_classes([IsAuthenticated])
     def post(self, request, pk):
