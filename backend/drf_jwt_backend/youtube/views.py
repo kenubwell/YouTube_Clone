@@ -12,9 +12,8 @@ from .serializers import CommentSerializer, ReplySerializer
 class VideoComments(APIView):
 
     @permission_classes([AllowAny])
-    def get(self, video_id_val):
-        comments = Comment.objects.all()
-        video_comments = comments.filter(video_id__video_id = video_id_val)
+    def get(self, request, video_id):
+        video_comments = Comment.objects.filter(video_id = video_id)
         serializers = CommentSerializer(video_comments, many=True)
         return Response(serializers.data, status=status.HTTP_200_OK)
 
@@ -44,10 +43,11 @@ class CommentUpdate(APIView):
 class ReplyDetails(APIView):
 
     @permission_classes([IsAuthenticated])
-    def get(self, pk):
+    def get(self, request, pk):
         replies = Reply.objects.filter(comment_id = pk)
         serializers = ReplySerializer(replies, many=True)
         return Response(serializers.data, status=status.HTTP_200_OK)
+        
 
     @permission_classes([IsAuthenticated])
     def post(self, request, pk):
