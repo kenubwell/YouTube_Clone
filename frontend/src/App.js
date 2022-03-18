@@ -24,11 +24,12 @@ function App() {
           path="/"
           element={
             
-              <SearchPage />
-           
+              <SearchPage/>
+            
           }
         />
-        
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
       <Footer />
     </div>
