@@ -22,7 +22,7 @@ const RegisterPage = () => {
       <form className="" onSubmit={handleSubmit}>
         <div className="reg-contain">
           <div>
-            <label className="reg-label">Username:{" "} </label>
+            <label className="reg-label-un">Username:{" "} </label>
             <input type="text" className = "reg-input-un" name="username" value={formData.username} onChange={handleInputChange}/>      
           </div>
           <div>

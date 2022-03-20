@@ -25,6 +25,15 @@
   padding-bottom: 1.5rem;
 }
 
+.reg-label-un {
+  font-weight: bold;
+  padding-left: 0.9rem;
+  padding-right: 0.4rem;
+  font-size: large;
+  color: white;
+  padding-bottom: 1.5rem;
+}
+
 .reg-label-em {
   font-weight: bold;
   padding-left: 3.1rem;

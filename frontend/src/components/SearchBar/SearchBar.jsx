@@ -3,12 +3,14 @@ import "./SearchBar.css";
 
 const SearchBar = (props) => {
 
-    const [searchTerm, setSearchTerm] = useState('');
 
     return (  
-    <div>
-        <label>Search:</label>
-        <input type='text' placeholder="Search for a video" onChange={(event) => setSearchTerm(event.target.value)}/>
+    <div className='search-contain'>
+        <form className='search-form-contain'>
+            <label className='search-label'>Search:</label>
+            <input type='text' placeholder="Search for a video..." className='search-input'/>
+            <button className='search-button'>Search</button>
+        </form>
     </div>
     );
 }
