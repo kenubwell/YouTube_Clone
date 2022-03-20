@@ -6,15 +6,10 @@ import "./VideoPage.css";
 
 const VideoPage = () => {
 
-  useEffect(() => {
-    if (isServerError) {
-      reset();
-    }
-  }, [isServerError]);
 
   return (
     <div>
-        Search Page....TBD
+        Video Page....TBD
     </div>
   );
 };
