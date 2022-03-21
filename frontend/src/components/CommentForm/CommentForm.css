@@ -28,3 +28,10 @@
   padding-bottom: 3px;
   margin-left: 0.8rem;
 }
+
+.comm-but-contain {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1rem;
+  padding-top: 0.3rem;
+}

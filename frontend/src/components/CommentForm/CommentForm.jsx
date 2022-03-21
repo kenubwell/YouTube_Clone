@@ -37,7 +37,7 @@ const CommentForm = () => {
             <label className = 'comment-label' htmlFor="Comment">Comment:{" "}</label>
             <input type= "text" id = 'Comment' className="comm-input"/>
         </div>
-        <div>
+        <div className="comm-but-contain">
             <button type = 'submit' className="comm-button">Post</button>
         </div>
       </form>
