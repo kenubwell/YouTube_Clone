@@ -26,3 +26,6 @@ const handleSubmit = (event) => {
 }
  
 export default SearchBar;
+
+
+//GitHub Test
