@@ -1,11 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import AuthContext from "../../context/AuthContext";
 // import useCustomForm from "../../hooks/useCustomForm";
 import { Link } from "react-router-dom";
 import "./VideoPage.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import axios from 'axios'
+import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 
 const VideoPage = () => {
+
 
 
   return (
@@ -15,10 +18,10 @@ const VideoPage = () => {
       <div className = 'video-contain'>
         <div className="video-container">
             <div>
-              <img src ="/images/bmore1.jpg"/>
+              <VideoPlayer />
             </div>
             <div>
-              <img src ="/images/bmore2.jpg"/>
+              <VideoPlayer/>
             </div>
             <div>
               <img src ="/images/bmore3.jpg"/>
@@ -39,3 +42,19 @@ const VideoPage = () => {
 };
 
 export default VideoPage;
+
+
+
+//notes:
+
+  // const[videoResults,setVideos] = useState([""]);
+
+  // useEffect(() =>{
+  //   getVideos()
+  // }, [])
+
+  // async function getVideos(){
+  //   let response= await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=bobross&type=video&maxResults=6&)
+  //   console.log(response.data)
+  //   setVideos(response.data)
+  // }
