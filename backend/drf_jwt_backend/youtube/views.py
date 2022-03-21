@@ -1,3 +1,4 @@
+from http import server
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
@@ -41,6 +42,22 @@ class CommentUpdate(APIView):
         serializer.save(user=request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    def patch(self,request,pk):
+        comment = get_object_or_404(Comment,pk=pk)
+        data={'likes':comment.likes +int(1)}
+        serializer = CommentSerializer(comment,data=data,partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data,status=status.HTTP_202_ACCEPTED)
+
+    def post(self,request,pk):
+        comment = get_object_or_404(Comment,pk=pk)
+        data={'dislikes':comment.dislikes +int(1)}
+        serializer = CommentSerializer(comment,data=data,partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data,status=status.HTTP_202_ACCEPTED)
+
 
 
 @permission_classes([IsAuthenticated])
@@ -60,5 +77,11 @@ class ReplyDetails(APIView):
         serializers.is_valid(raise_exception=True)
         serializers.save(user=request.user)
         return Response(serializers.data, status=status.HTTP_201_CREATED)
+
+
+# permission_classes([IsAuthenticated])
+# class LikeSong(APIView):
+
+
 
 
