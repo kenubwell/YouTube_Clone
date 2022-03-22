@@ -11,6 +11,8 @@ const HomePage = () => {
 
   const [searchResults, setSearchResults] = useState([]);
   const [videoId, setVideoId] = useState("");
+  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
   const [relatedVideos, setRelatedVideos] = useState([]);
 
   useEffect(() => {
@@ -24,6 +26,8 @@ let key = process.env.REACT_APP_API_KEY
 async function getSearchResults(searchTerm){
   let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=6&key=${key}`);
   setVideoId(response.data.items[0].id.videoId)
+  setDescription(response.data.items[0].snippet.description)
+  setTitle(response.data.items[0].snippet.title)
   setSearchResults(response.data.items)
 
 }
