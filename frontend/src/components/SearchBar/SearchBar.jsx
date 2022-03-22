@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import "./SearchBar.css";
 
@@ -26,6 +27,3 @@ const handleSubmit = (event) => {
 }
  
 export default SearchBar;
-
-
-//GitHub Test

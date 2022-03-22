@@ -3,14 +3,15 @@ import "./RelatedVideos.css";
 
 const RelatedVideos = (props) => {
     return (  
-        <div>
-            <h2>Related Videos</h2>
+        <div className="related-contain">
+            <div><h2>Related Videos</h2></div>
             {props.relatedVideos.map((element, index) => {
                 if (element.snippet){
-                    return (<img key ={index} onClick={() => props.setVideoId(element.id.videoId)} src= {element.snippet.thumbnails.default.url}></img>)
-                }
-                else{
-                    return <div></div>
+                    return (
+                    <div className='related-image'>
+                        <img key ={index} onClick={() => props.setVideoId(element.id.videoId)} src= {element.snippet.thumbnails.default.url} className='related-image'></img>
+                    </div>
+                    )
                 }
             })}
         </div>

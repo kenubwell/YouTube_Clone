@@ -9,14 +9,14 @@ import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 
 const HomePage = () => {
 
-const [searchResults, setSearchResults] = useState("");
-const [videoId, setVideoId] = useState("lLWEXRAnQd0");
-const [relatedVideos, setRelatedVideos] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [videoId, setVideoId] = useState("");
+  const [relatedVideos, setRelatedVideos] = useState([]);
 
-useEffect(() => {
-  getSearchResults();
-  getRelatedVideos();
-}, [videoId])
+  useEffect(() => {
+    getSearchResults();
+    getRelatedVideos();
+  }, [videoId])
 
 
 let key = process.env.REACT_APP_API_KEY
@@ -24,7 +24,6 @@ let key = process.env.REACT_APP_API_KEY
 async function getSearchResults(searchTerm){
   let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=6&key=${key}`);
   setVideoId(response.data.items[0].id.videoId)
-  console.log(response.data.items) //will delete later
   setSearchResults(response.data.items)
 
 }
@@ -40,7 +39,7 @@ async function getRelatedVideos(){
       <div><SearchBar getSearchResults={getSearchResults}/></div>
       <div className = 'home-flex-contain'>
         <div>
-          <div className='home-video-player'><VideoPlayer/></div>
+          <div className='home-video-player'><VideoPlayer videoId = {videoId}/></div>
           <div className='home-comment-form'><CommentForm/></div>
         </div>
         <div>
