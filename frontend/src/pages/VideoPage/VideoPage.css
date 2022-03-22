@@ -11,10 +11,7 @@
 }
 
 .video-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  row-gap: 70px;
-  column-gap: 150px;
+  display: center;
   padding-top: 40px;
   margin-left: 30px;
   margin-right: 30px;
