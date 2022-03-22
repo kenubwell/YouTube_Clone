@@ -8,8 +8,8 @@ const RelatedVideos = (props) => {
             {props.relatedVideos.map((element, index) => {
                 if (element.snippet){
                     return (
-                    <div className='related-image'>
-                        <img key ={index} onClick={() => props.setVideoId(element.id.videoId)} src= {element.snippet.thumbnails.default.url} className='related-image'></img>
+                    <div className='related-image' key ={index}>
+                        <img src= {element.snippet.thumbnails.default.url} onClick={() => props.setVideoId(element.id.videoId)}  className='related-image'></img>
                     </div>
                     )
                 }
