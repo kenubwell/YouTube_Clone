@@ -3,9 +3,17 @@ import "./RelatedVideos.css";
 
 const RelatedVideos = (props) => {
     return (  
-        <div><iframe id="ytplayer" type="text/html" width="300" height="180"
-        src="https://www.youtube.com/embed/mTWoGhYuw98"
-        frameborder="0"></iframe></div>
+        <div>
+            <h2>Related Videos</h2>
+            {props.relatedVideos.map((element, index) => {
+                if (element.snippet){
+                    return (<img key ={index} onClick={() => props.setVideoId(element.id.videoId)} src= {element.snippet.thumbnails.default.url}></img>)
+                }
+                else{
+                    return <div></div>
+                }
+            })}
+        </div>
     );
 }
  

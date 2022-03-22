@@ -10,19 +10,28 @@ import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 const HomePage = () => {
 
 const [searchResults, setSearchResults] = useState("");
+const [videoId, setVideoId] = useState("lLWEXRAnQd0");
+const [relatedVideos, setRelatedVideos] = useState([]);
 
 useEffect(() => {
-  getSearchResults()
-}, [])
+  getSearchResults();
+  getRelatedVideos();
+}, [videoId])
 
 
 let key = process.env.REACT_APP_API_KEY
 
 async function getSearchResults(searchTerm){
   let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=6&key=${key}`);
-  console.log(response.data) //will delete later
-  setSearchResults(response.data)
+  setVideoId(response.data.items[0].id.videoId)
+  console.log(response.data.items) //will delete later
+  setSearchResults(response.data.items)
 
+}
+
+async function getRelatedVideos(){
+  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=6&relatedToVideoId=${videoId}&key=${key}`);
+  setRelatedVideos(response.data.items)
 }
 
 
@@ -35,7 +44,7 @@ async function getSearchResults(searchTerm){
           <div className='home-comment-form'><CommentForm/></div>
         </div>
         <div>
-          <div className='home-related'><RelatedVideos/></div>
+          <div className='home-related'><RelatedVideos relatedVideos={relatedVideos}/></div>
         </div>
       </div>
     </div>
