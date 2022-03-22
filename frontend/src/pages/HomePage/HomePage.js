@@ -2,9 +2,10 @@ import React from "react";
 import { useEffect, useState } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import axios from "axios";
-import useAuth from "../../hooks/useAuth";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import "./HomePage.css";
+import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
+import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 
 const HomePage = () => {
 
@@ -29,8 +30,13 @@ async function getSearchResults(searchTerm){
     <div>
       <div><SearchBar getSearchResults={getSearchResults}/></div>
       <div className = 'home-flex-contain'>
-        <div><CommentForm/></div>
-        <div>This is where we place Related Videos</div>
+        <div>
+          <div className='home-video-player'><VideoPlayer/></div>
+          <div className='home-comment-form'><CommentForm/></div>
+        </div>
+        <div>
+          <div className='home-related'><RelatedVideos/></div>
+        </div>
       </div>
     </div>
   );
