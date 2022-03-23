@@ -11,8 +11,8 @@ const VideoPlayer = (props) => {
                 src= {jssrc}
                 frameborder="0">
             </iframe>
-            <h4>{props.title}</h4>
-            <div>{props.description}</div>
+            <div className = "video-title"><h5>Title: {props.title}</h5></div>
+            <div className = "video-description"><h5>Description: {props.description}</h5></div>
         </div>
 
     );
