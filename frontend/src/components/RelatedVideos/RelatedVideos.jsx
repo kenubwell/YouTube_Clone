@@ -9,7 +9,7 @@ const RelatedVideos = (props) => {
                 if (element.snippet){
                     return (
                     <div className='related-image' key ={index}>
-                        <img src= {element.snippet.thumbnails.default.url} onClick={() => props.setVideoId(element.id.videoId)}  className='related-image'></img>
+                        <img src= {element.snippet.thumbnails.medium.url} onClick={() => props.setVideoId(element.id.videoId)}  className='related-image'></img>
                     </div>
                     )
                 }

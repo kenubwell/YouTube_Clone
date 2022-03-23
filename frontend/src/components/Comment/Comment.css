@@ -1,0 +1,27 @@
+.comment-reply {
+  background-color: blue;
+  color: black;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 4px;
+  float: right;
+  margin-top: 0.3rem;
+  margin-right: 0.3rem;
+}
+
+.likes-text {
+  color: white;
+  padding-left: 4px;
+  padding-bottom: 1px;
+}
+
+.like-buttons {
+  background-color: white;
+  margin-right: 5px;
+}
+
+.button-contain {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2px;
+}
