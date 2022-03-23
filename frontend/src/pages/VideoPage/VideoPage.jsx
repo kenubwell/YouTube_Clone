@@ -5,22 +5,27 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import axios from 'axios'
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 
+let key = process.env.REACT_APP_API_KEY
+
 const VideoPage = () => {
   
-  const [searchResults, setSearchResults] = useState([]);
-  const [videoId, setVideoId] = useState([""]);
+  const [searchResults, setSearchResults] = useState('');
+  const [videoId, setVideoId] = useState("");
+  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+
   
 
   useEffect(() => {
     getSearchResults();
-  },[videoId])
+  },[])
 
-
-  let key = process.env.REACT_APP_API_KEY
 
   async function getSearchResults(searchTerm='welcome to youtube'){
-  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=1&key=AIzaSyDVQlyvw2k-xYN3K078IKgdz39tzDlmmhQ`);
+  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=1&key=${key}`);
   setVideoId(response.data.items[0].id.videoId)
+  setDescription(response.data.items[0].snippet.description)
+  setTitle(response.data.items[0].snippet.title)
   setSearchResults(response.data.items)
   console.log(response.data.items)
 }
@@ -36,7 +41,7 @@ const VideoPage = () => {
       <div className = 'video-contain'>
         <div className="video-container">
             <div>
-              <VideoPlayer videoId={videoId} />
+              <div className='landing-page-video-player'><VideoPlayer videoId={videoId} description={description} title={title}/></div>
             </div>
         </div> 
       </div>
