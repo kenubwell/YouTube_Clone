@@ -5,7 +5,7 @@ import useAuth from "../hooks/useAuth";
 const PrivateRoute = ({ children }) => {
   let [user] = useAuth();
   console.log(user);
-  return user ? children : <Navigate to="/videos" />;
+  return user ? children : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

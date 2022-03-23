@@ -7,10 +7,22 @@ import "./HomePage.css";
 import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import CommentList from "../../components/CommentList/CommentList";
-import useAuth from "../../hooks/useAuth";
+
 
 
 const HomePage = () => {
+
+const accessToken = process.env.REACT_APP_TOKEN
+
+axios.interceptors.request.use(
+  config => {
+    config.headers.authorizaiton = `Bearer ${accessToken}`;
+    return config;
+  },
+  error => {
+  return Promise.reject(error);
+  }
+);
 
   let key = process.env.REACT_APP_API_KEY
 
@@ -21,8 +33,7 @@ const HomePage = () => {
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [comment, setComment] = useState('');
   const [allComments, setAllComments] = useState([]);
-  const [user, token] = useAuth();
- 
+
   useEffect(() => {
     getSearchResults();
   }, [])
@@ -35,7 +46,7 @@ const HomePage = () => {
 
 
 async function getSearchResults(searchTerm){
-  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=${key}`);
+  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=2&key=${key}`);
   setVideoId(response.data.items[0].id.videoId)
   setDescription(response.data.items[0].snippet.description)
   setTitle(response.data.items[0].snippet.title)
@@ -44,7 +55,7 @@ async function getSearchResults(searchTerm){
 }
 
 async function getRelatedVideos(){
-  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&relatedToVideoId=${videoId}&key=${key}`);
+  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=2&relatedToVideoId=${videoId}&key=${key}`);
   setRelatedVideos(response.data.items)
   console.log(response.data.items)
 }
@@ -62,16 +73,10 @@ async function postComment(text){
     video_id: videoId,
     text: text,
   }
-  let response = await axios.post("http://127.0.0.1:8000/comment/", newComment, {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-    }
-  );
+  let response = await axios.post("http://127.0.0.1:8000/comment/", newComment);
   setComment(response.data)
   getAllComments();
 }
-
 
   return (
     <div className="homepage-contain">
