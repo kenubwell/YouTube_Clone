@@ -6,6 +6,7 @@ import CommentForm from "../../components/CommentForm/CommentForm";
 import "./HomePage.css";
 import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+import Comment from "../../components/Comment/Comment";
 
 const HomePage = () => {
 
@@ -54,7 +55,7 @@ async function postComment(text){
     video_id: videoId,
     text: text,
   }
-  let response = await axios.post(`http://127.0.0.1:8000/comment/`, newComment);
+  let response = await axios.post("http://127.0.0.1:8000/comment/", newComment);
   setComment(response.data)
   getAllComments();
 }
@@ -67,6 +68,7 @@ async function postComment(text){
         <div>
           <div className='home-video-player'><VideoPlayer videoId = {videoId} description = {description} title = {title}/></div>
           <div className='home-comment-form'><CommentForm postComment = {postComment}/></div>
+          <div><Comment allComments = {allComments}/></div>
         </div>
         <div>
           <div className='home-related'><RelatedVideos relatedVideos={relatedVideos}/></div>

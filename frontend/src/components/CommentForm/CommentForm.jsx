@@ -1,9 +1,4 @@
 import React, { useState } from "react";
-import AuthContext from "../../context/AuthContext";
-import useAuth from "../../hooks/useAuth";
-import useCustomForm from "../../hooks/useCustomForm";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./CommentForm.css";
 
 // let initialValues = {
