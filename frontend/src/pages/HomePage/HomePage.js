@@ -7,6 +7,8 @@ import "./HomePage.css";
 import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import CommentList from "../../components/CommentList/CommentList";
+import useAuth from "../../hooks/useAuth";
+
 
 const HomePage = () => {
 
@@ -19,14 +21,17 @@ const HomePage = () => {
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [comment, setComment] = useState('');
   const [allComments, setAllComments] = useState([]);
-  const token = localStorage.getItem('token');
-
+  const [user, token] = useAuth();
+ 
   useEffect(() => {
     getSearchResults();
+  }, [])
+
+  useEffect(() => {
     getRelatedVideos();
     getAllComments();
     postComment();
-  }, [])
+  }, [videoId])
 
 
 async function getSearchResults(searchTerm){
@@ -57,7 +62,12 @@ async function postComment(text){
     video_id: videoId,
     text: text,
   }
-  let response = await axios.post("http://127.0.0.1:8000/comment/", newComment);
+  let response = await axios.post("http://127.0.0.1:8000/comment/", newComment, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+    }
+  );
   setComment(response.data)
   getAllComments();
 }
