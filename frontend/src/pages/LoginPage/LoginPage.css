@@ -43,3 +43,13 @@
 .error {
   color: red;
 }
+
+.iframe-vid {
+  margin-top: 0.5rem;
+}
+
+.login-notice {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 1rem;
+}

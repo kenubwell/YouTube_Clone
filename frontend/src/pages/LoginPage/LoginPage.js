@@ -43,6 +43,12 @@ const LoginPage = () => {
           <Link to="/register" ><b>Click to Register</b></Link>
         </div>
       </form>
+      <div className="login-notice"><p>Login or register to see more video content & options.</p></div>
+      <div className="iframe-vid">
+        <iframe id="ytplayer" type="text/html" width="600" height="320"
+        src="https://www.youtube.com/embed/V65uAHzofbg"
+        frameborder="0"></iframe>
+      </div>
     </div>
   );
 };
