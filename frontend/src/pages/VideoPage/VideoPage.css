@@ -12,13 +12,17 @@
 
 .video-container {
   display: center;
+  margin-top: 5rem;
 }
 
-.landing-page-video-player{
-  display: flex;
-  margin-top: 5rem;
+
+
+.video-player{
   width: 100%;
-  height: 100%;
+}
 
 
+.login-alert{
+  padding-top: 1rem;
+  font-size: larger;
 }
