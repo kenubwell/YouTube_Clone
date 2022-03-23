@@ -5,7 +5,6 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import axios from 'axios'
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 
-let key = process.env.REACT_APP_API_KEY
 
 const VideoPage = () => {
   
@@ -13,8 +12,9 @@ const VideoPage = () => {
   const [videoId, setVideoId] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
-
   
+  
+  let key = process.env.REACT_APP_API_KEY
 
   useEffect(() => {
     getSearchResults();
@@ -22,7 +22,7 @@ const VideoPage = () => {
 
 
   async function getSearchResults(searchTerm='welcome to youtube'){
-  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=1&key=AIzaSyCkKWY-BXOKofb00N3IG6nTL0ZonYRFBxo`);
+  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=1&key=${key}`);
   setVideoId(response.data.items[0].id.videoId)
   setDescription(response.data.items[0].snippet.description)
   setTitle(response.data.items[0].snippet.title)
@@ -46,7 +46,7 @@ const VideoPage = () => {
               title={title}/>
             </div>
             <div>
-              <div className='login-alert'><Link to="/login"><b>Click here</b></Link><span> to login or register to see comments</span></div>
+              <div className='login-alert'><Link to="/login"><b>Click here</b></Link><span> to login/register to see comments</span></div>
             </div>
         </div> 
       </div>
