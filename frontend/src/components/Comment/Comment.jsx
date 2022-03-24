@@ -52,7 +52,7 @@ const Comment = (props) => {
             </Modal>
             <div className='likes-text'>Likes:</div>
             <div className='likes-text'>Dislikes:</div>
-            <div className='reply-text'>Reply:</div>
+            <div className='reply-text'>Reply:<span><p>{replyText}</p></span></div>
         </div>
  
     );
