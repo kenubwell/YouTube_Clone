@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from "react";
+import SearchBar from "../../components/SearchBar/SearchBar";
 // import AuthContext from "../../context/AuthContext";
 // import useCustomForm from "../../hooks/useCustomForm";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./SearchPage.css";
 
 
@@ -9,7 +10,8 @@ const SearchPage = () => {
 
   return (
     <div>
-       <h1>Landing page</h1>
+      <div>YouTube++ General Search Page</div>
+       <div><SearchBar/></div>
     </div>
   );
 };

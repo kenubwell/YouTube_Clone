@@ -7,22 +7,10 @@ import "./HomePage.css";
 import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import CommentList from "../../components/CommentList/CommentList";
-
+import useAuth from "../../hooks/useAuth";
 
 
 const HomePage = () => {
-
-const accessToken = process.env.REACT_APP_TOKEN
-
-axios.interceptors.request.use(
-  config => {
-    config.headers.authorizaiton = `Bearer ${accessToken}`;
-    return config;
-  },
-  error => {
-  return Promise.reject(error);
-  }
-);
 
   let key = process.env.REACT_APP_API_KEY
 
@@ -33,6 +21,7 @@ axios.interceptors.request.use(
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [comment, setComment] = useState('');
   const [allComments, setAllComments] = useState([]);
+  const [user, token] = useAuth();
 
   useEffect(() => {
     getSearchResults();
@@ -73,7 +62,11 @@ async function postComment(text){
     video_id: videoId,
     text: text,
   }
-  let response = await axios.post("http://127.0.0.1:8000/comment/", newComment);
+  let response = await axios.post("http://127.0.0.1:8000/comment/", newComment, {
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  });
   setComment(response.data)
   getAllComments();
 }
@@ -88,7 +81,7 @@ async function postComment(text){
           <div><CommentList allComments = {allComments}/></div>
         </div>
         <div>
-          <div className='home-related'><RelatedVideos relatedVideos={relatedVideos} setVideoId = {setVideoId}/></div>
+          <div className='home-related'><RelatedVideos relatedVideos={relatedVideos} setVideoId={setVideoId} setTitle = {setTitle} setDescription = {setDescription}/></div>
         </div>
       </div>
     </div>

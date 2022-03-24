@@ -25,3 +25,30 @@
   justify-content: flex-end;
   padding: 2px;
 }
+
+.reply-text {
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.modal-back {
+  background-color: black;
+  width: 750px;
+  color: white;
+  margin-top: 25rem;
+  margin-left: 5rem;
+  padding: 2rem 1rem;
+  border-radius: 20px;
+}
+
+.reply-input {
+  width: 600px;
+  height: 40px;
+}
+.reply-post {
+  margin-top: 1rem;
+  background-color: blue;
+  color: black;
+  font-weight: bold;
+  border-radius: 10px;
+}
