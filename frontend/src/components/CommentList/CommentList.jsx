@@ -8,9 +8,9 @@ const CommentList = (props) => {
         {props.allComments.map((comment, index) => { //use curly brackets to write JavaScript within HTML. The index will iterate the index values (Note it starts at 0)
         return (
             <div className = 'comm-list-contain'key = {index}>
-                <div className="list-text">Username: {comment.user_id}</div>
+                <div className="list-text">Username: {comment.user.username}</div>
                 <div className="list-text">Comment: {comment.text}</div>
-                <div><Comment {...props}/></div>
+                <div><Comment id={comment.id} {...props}/></div>
             </div>
         )
         })}

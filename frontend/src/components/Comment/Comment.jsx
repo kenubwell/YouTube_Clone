@@ -10,9 +10,10 @@ const Comment = (props) => {
     const [replyText, setReplyText] = useState('')
 
 
-    function handlesubmit(event){
-        event.preventDefault();
+    function handlesubmit(){
+       setModalIsOpen(false)
         let newReplyPost = {
+        "comment_id": props.id,
         "text": replyText
         }
         props.postReply(newReplyPost);
@@ -38,18 +39,20 @@ const Comment = (props) => {
                 <button type='button' className='comment-reply' onClick={() => setModalIsOpen(true)}>Reply</button>
             </div>
             <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} className='modal-back'>
-                <form onSubmit = {handlesubmit}>
+                <form>
                     <div>
                         <label htmlFor="Reply" className='reply-text'>Reply:{" "}</label>
-                        <input type= "text" id = 'Reply' className='reply-input'/>
+                        <input onChange={(e) => setReplyText(e.target.value)} type= "text" id = 'Reply' className='reply-input'/>
                     </div>
                     <div>
-                        <button type = 'button' onClick={() => {setModalIsOpen(false)}} className='reply-post'>Post</button>
+                        <button type = 'button' onClick={() => {handlesubmit()}} className='reply-post'>Post</button>
+                        
                     </div>
                 </form>
             </Modal>
             <div className='likes-text'>Likes:</div>
             <div className='likes-text'>Dislikes:</div>
+            <div className='reply-text'>Reply:</div>
         </div>
  
     );

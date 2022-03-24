@@ -22,12 +22,15 @@ const HomePage = () => {
   const [comment, setComment] = useState('');
   const [allComments, setAllComments] = useState([]);
   const [reply, setReply] = useState('');
+  const [like, setLike] = useState('');
+  const [dislike, setDisLike] = useState('');
   const [user, token] = useAuth();
 
   useEffect(() => {
     getSearchResults();
     getAllComments();
     postReply();
+    postComment();
   }, [])
 
   useEffect(() => {
@@ -77,13 +80,35 @@ async function postComment(text){
 
 
 async function postReply(reply){
+  console.log(reply)
   let commentId = comment.id
-  let response = await axios.post(`http://127.0.0.1:8000/reply/${commentId}`, reply, {
+  let response = await axios.post(`http://127.0.0.1:8000/comment/reply/${commentId}/`, reply, {
     headers: {
       Authorization: 'Bearer ' + token
     }
   });
   setReply(response.data)
+}
+
+
+async function postLike(){
+  let commentId = comment.id
+  let response = await axios.patch(`http://127.0.0.1:8000/comment/${commentId}`, {
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  });
+  setLike(response.data)
+}
+
+async function postDisLike(){
+  let commentId = comment.id
+  let response = await axios.post(`http://127.0.0.1:8000/comment/${commentId}`, {
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  });
+  setDisLike(response.data)
 }  
 
 
@@ -94,7 +119,7 @@ async function postReply(reply){
         <div>
           <div className='home-video-player'><VideoPlayer videoId = {videoId} description = {description} title = {title}/></div>
           <div className='home-comment-form'><CommentForm postComment = {postComment}/></div>
-          <div><CommentList allComments = {allComments} postReply = {postReply}/></div>
+          <div><CommentList allComments = {allComments} postReply = {postReply} postLike = {postLike} postDislike = {postDisLike}/></div>
         </div>
         <div>
           <div className='home-related'><RelatedVideos relatedVideos={relatedVideos} setVideoId={setVideoId} setTitle = {setTitle} setDescription = {setDescription}/></div>
