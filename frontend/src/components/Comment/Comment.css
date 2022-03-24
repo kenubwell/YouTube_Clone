@@ -55,4 +55,7 @@
 
 .reply-text {
   color: white;
+  padding-left: 4px;
+  padding-bottom: 2.5px;
+  font-weight: normal;
 }

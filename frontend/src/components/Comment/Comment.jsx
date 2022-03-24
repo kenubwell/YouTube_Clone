@@ -9,6 +9,7 @@ const Comment = (props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [replyText, setReplyText] = useState('')
 
+   
 
     function handlesubmit(){
        setModalIsOpen(false)
@@ -19,7 +20,7 @@ const Comment = (props) => {
         props.postReply(newReplyPost);
     }
 
-
+    let reply = props.text
 
     async function postLike(){
 
@@ -32,8 +33,8 @@ const Comment = (props) => {
     return (  
         <div>
             <div className='button-contain'>
-                <div className = 'like-buttons'><button onClick={postLike}><GoThumbsup/></button></div>
-                <div className = 'like-buttons'><button onClick={postDisLike}><GoThumbsdown/></button></div>
+                <div className = 'like-buttons'><button onClick={() => props.postLike()}><GoThumbsup/></button></div>
+                <div className = 'like-buttons'><button onClick={() => props.postDisLike()}><GoThumbsdown/></button></div>
             </div>
             <div>
                 <button type='button' className='comment-reply' onClick={() => setModalIsOpen(true)}>Reply</button>
@@ -52,7 +53,7 @@ const Comment = (props) => {
             </Modal>
             <div className='likes-text'>Likes:</div>
             <div className='likes-text'>Dislikes:</div>
-            <div className='reply-text'>Reply:<span><p>{replyText}</p></span></div>
+            <div className='reply-text'>Reply: {reply}</div>
         </div>
  
     );

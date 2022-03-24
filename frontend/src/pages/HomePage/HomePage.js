@@ -31,6 +31,8 @@ const HomePage = () => {
     getAllComments();
     postReply();
     postComment();
+    postLike();
+    postDisLike();
   }, [])
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const HomePage = () => {
 
 
 async function getSearchResults(searchTerm = 'programming'){
-  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=2&key=${key}`);
+  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=${key}`);
   setVideoId(response.data.items[0].id.videoId)
   console.log(response.data.items[0].id.videoId)
   setDescription(response.data.items[0].snippet.description)
@@ -50,7 +52,7 @@ async function getSearchResults(searchTerm = 'programming'){
 }
 
 async function getRelatedVideos(){
-  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=3&relatedToVideoId=${videoId}&key=${key}`);
+  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&relatedToVideoId=${videoId}&key=${key}`);
   setRelatedVideos(response.data.items)
   console.log(response.data.items)
 }
@@ -93,7 +95,7 @@ async function postReply(reply){
 
 async function postLike(){
   let commentId = comment.id
-  let response = await axios.patch(`http://127.0.0.1:8000/comment/${commentId}`, {
+  let response = await axios.patch(`http://127.0.0.1:8000/comment/${commentId}/`, {
     headers: {
       Authorization: 'Bearer ' + token
     }
@@ -103,7 +105,7 @@ async function postLike(){
 
 async function postDisLike(){
   let commentId = comment.id
-  let response = await axios.post(`http://127.0.0.1:8000/comment/${commentId}`, {
+  let response = await axios.post(`http://127.0.0.1:8000/comment/${commentId}/`, {
     headers: {
       Authorization: 'Bearer ' + token
     }
