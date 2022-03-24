@@ -12,7 +12,7 @@ import useAuth from "../../hooks/useAuth";
 
 const HomePage = () => {
 
-  let key = process.env.REACT_APP_API_KEY
+  let key = process.env.REACT_APP_API_KEY //I have my API Access key in the .env folder, REACT_APP_API_KEY={API KEY}
 
   const [searchResults, setSearchResults] = useState([]);
   const [videoId, setVideoId] = useState("");
@@ -21,10 +21,12 @@ const HomePage = () => {
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [comment, setComment] = useState('');
   const [allComments, setAllComments] = useState([]);
+  const [reply, setReply] = useState('');
   const [user, token] = useAuth();
 
   useEffect(() => {
     getSearchResults();
+    getAllComments();
   }, [])
 
   useEffect(() => {
@@ -73,6 +75,18 @@ async function postComment(text){
   getAllComments();
 }
 
+
+async function postReply(reply){
+  let commentId = comment.id
+  let response = await axios.post(`http://127.0.0.1:8000/reply/${commentId}`, reply, {
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  });
+  setReply(response.data)
+}  
+
+
   return (
     <div className="homepage-contain">
       <div><SearchBar getSearchResults={getSearchResults}/></div>
@@ -80,7 +94,7 @@ async function postComment(text){
         <div>
           <div className='home-video-player'><VideoPlayer videoId = {videoId} description = {description} title = {title}/></div>
           <div className='home-comment-form'><CommentForm postComment = {postComment}/></div>
-          <div><CommentList allComments = {allComments}/></div>
+          <div><CommentList allComments = {allComments} postReply = {postReply}/></div>
         </div>
         <div>
           <div className='home-related'><RelatedVideos relatedVideos={relatedVideos} setVideoId={setVideoId} setTitle = {setTitle} setDescription = {setDescription}/></div>

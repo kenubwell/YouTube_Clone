@@ -3,25 +3,19 @@ import './CommentList.css';
 import Comment from "../Comment/Comment";
 
 const CommentList = (props) => {
- 
+    return (  
+        <div>
+        {props.allComments.map((comment, index) => { //use curly brackets to write JavaScript within HTML. The index will iterate the index values (Note it starts at 0)
         return (
-            <div className="comm-list-contain">
-                <div className="list-text">Username:</div>
-                <div className="list-text">Comment:</div>
+            <div className = 'comm-list-contain'key = {index}>
+                <div className="list-text">Username: {comment.id}</div>
+                <div className="list-text">Comment: {comment.text}</div>
                 <div><Comment/></div>
             </div>
         )
+        })}
+        </div>   
+    );
 }
 
 export default CommentList;
-
-
-// {props.allComments.map((comment, index) => { 
-//     return (
-//         <div className="comm-list-contain" key = {index}>
-//             <div><p>{comment.user.username}</p></div>
-//             <div><p>{comment.text}</p></div>
-//             <div><Comment/></div>
-//         </div>
-//     )
-//     })}
