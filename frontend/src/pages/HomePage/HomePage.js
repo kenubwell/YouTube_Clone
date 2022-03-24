@@ -30,13 +30,14 @@ const HomePage = () => {
   useEffect(() => {
     getRelatedVideos();
     getAllComments();
-    postComment();
+  
   }, [videoId])
 
 
-async function getSearchResults(searchTerm){
+async function getSearchResults(searchTerm = 'programming'){
   let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=2&key=${key}`);
   setVideoId(response.data.items[0].id.videoId)
+  console.log(response.data.items[0].id.videoId)
   setDescription(response.data.items[0].snippet.description)
   setTitle(response.data.items[0].snippet.title)
   setSearchResults(response.data.items)
@@ -53,6 +54,7 @@ async function getRelatedVideos(){
 async function getAllComments(){
   let response = await axios.get(`http://127.0.0.1:8000/comment/${videoId}/`);
   setAllComments(response.data)
+  console.log(response.data)
 }
 
 
