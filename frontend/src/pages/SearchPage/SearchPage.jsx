@@ -33,7 +33,7 @@ const SearchPage = () => {
       </div>
       <div className="search-title"><p className="search-para"><medium className='tube-you'>YouTube++</medium> General Search Page</p></div>
        <div className=""><SearchBar getSearchResults={getSearchResults}/></div>
-       <div className="disclaimer-title"><p className="disclaim-para">Login and/or register to view the videos</p></div>
+       <div className="disclaimer-title"><p className="disclaim-para">Welcome to search but <medium className='log-reg-font'>login and/or register</medium> to view the videos</p></div>
        <div className="sresult-title"><h3>Search Results</h3></div>
        <div className="overall-contain-se">
         <div className="search-containr">
@@ -42,6 +42,7 @@ const SearchPage = () => {
                     return (
                     <div className='' key ={index}>
                         <img src= {element.snippet.thumbnails.medium.url} className=''></img>
+                        <p className="search-font-size"><b>Title:</b> {element.snippet.title}</p>
                     </div>
                     )
                 }

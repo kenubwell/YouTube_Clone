@@ -5,3 +5,12 @@
 .video-title {
   width: 500px;
 }
+
+.vid-tight-bold {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.vid-font {
+  font-size: 18px;
+}

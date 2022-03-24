@@ -3,6 +3,7 @@
   margin: auto;
   max-width: 1000px;
   padding-left: 8rem;
+  margin-bottom: 7rem;
 }
 
 .search-containr {
@@ -47,4 +48,13 @@
 .sresult-title {
   text-align: center;
   margin-bottom: 2rem;
+}
+
+.search-font-size {
+  font-size: 16px;
+  width: 300px;
+}
+
+.log-reg-font {
+  color: red;
 }
