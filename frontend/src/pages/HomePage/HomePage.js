@@ -27,12 +27,12 @@ const HomePage = () => {
   useEffect(() => {
     getSearchResults();
     getAllComments();
+    postReply();
   }, [])
 
   useEffect(() => {
     getRelatedVideos();
     getAllComments();
-  
   }, [videoId])
 
 
@@ -47,7 +47,7 @@ async function getSearchResults(searchTerm = 'programming'){
 }
 
 async function getRelatedVideos(){
-  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=2&relatedToVideoId=${videoId}&key=${key}`);
+  let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=3&relatedToVideoId=${videoId}&key=${key}`);
   setRelatedVideos(response.data.items)
   console.log(response.data.items)
 }

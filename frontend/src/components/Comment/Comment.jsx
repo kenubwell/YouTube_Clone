@@ -7,6 +7,18 @@ import Modal from 'react-modal'
 const Comment = (props) => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [replyText, setReplyText] = useState('')
+
+
+    function handlesubmit(event){
+        event.preventDefault();
+        let newReplyPost = {
+        "text": replyText
+        }
+        props.postReply(newReplyPost);
+    }
+
+
 
     async function postLike(){
 
@@ -23,16 +35,16 @@ const Comment = (props) => {
                 <div className = 'like-buttons'><button onClick={postDisLike}><GoThumbsdown/></button></div>
             </div>
             <div>
-                <button type='submit' className='comment-reply' onClick={() => setModalIsOpen(true)}>Reply</button>
+                <button type='button' className='comment-reply' onClick={() => setModalIsOpen(true)}>Reply</button>
             </div>
             <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} className='modal-back'>
-                <form>
+                <form onSubmit = {handlesubmit}>
                     <div>
                         <label htmlFor="Reply" className='reply-text'>Reply:{" "}</label>
                         <input type= "text" id = 'Reply' className='reply-input'/>
                     </div>
                     <div>
-                        <button type = 'submit' onClick={() => setModalIsOpen(false)} className='reply-post'>Post</button>
+                        <button type = 'button' onClick={() => {setModalIsOpen(false)}} className='reply-post'>Post</button>
                     </div>
                 </form>
             </Modal>

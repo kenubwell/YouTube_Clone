@@ -10,7 +10,7 @@ const CommentList = (props) => {
             <div className = 'comm-list-contain'key = {index}>
                 <div className="list-text">Username: {comment.id}</div>
                 <div className="list-text">Comment: {comment.text}</div>
-                <div><Comment/></div>
+                <div><Comment {...props}/></div>
             </div>
         )
         })}
